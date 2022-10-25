@@ -6,7 +6,7 @@ const PORT = 1337;
 const app = express();
 
 app.use(morgan("dev"));
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 ////////////////////////////////////ALL POSTS
 app.get("/", (req, res) => {
@@ -21,7 +21,9 @@ app.get("/", (req, res) => {
   <body>
     <div class="news-list">
       <header><img src="/logo.png"/>Wizard News</header>
-      ${posts.map(post => `
+      ${posts
+        .map(
+          (post) => `
         <div class='news-item'>
           <p>
             <span class="news-position">${post.id}. ▲</span>
@@ -32,18 +34,19 @@ app.get("/", (req, res) => {
             ${post.upvotes} upvotes | ${post.date}
           </small>
         </div>`
-      ).join('')}
+        )
+        .join("")}
     </div>
   </body>
 </html>`;
-  res.send(html)
+  res.send(html);
 });
 /////////////////////////////////////////////////////Single Posts
-app.get('/posts/:id', (req, res) => {
+app.get("/posts/:id", (req, res) => {
   const id = req.params.id;
-  const post = postBank.find(id)
-  if (!post.id){
-    res.status(404)
+  const post = postBank.find(id);
+  if (!post.id) {
+    res.status(404);
     const html = `
     <!DOCTYPE html>
     <html>
@@ -57,12 +60,9 @@ app.get('/posts/:id', (req, res) => {
         <p>You done broke the Page! 🧙‍♀️ ... Page Not Found</p>
       </div>
     </body>
-    </html>`
-    res.send(html)
+    </html>`;
+    res.send(html);
   } else {
-    
-    
-    
     res.send(`<!DOCTYPE html>
     <html>
     <head>
@@ -87,11 +87,12 @@ app.get('/posts/:id', (req, res) => {
     </div>
     </div>
     </body>
-    </html>`)
+    </html>`);
   }
-  });
-
+});
 
 app.listen(PORT, () => {
   console.log(`App listening in port ${PORT}`);
 });
+
+console.log("branch test");
