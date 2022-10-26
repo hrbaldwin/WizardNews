@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const postBank = require("./postBank");
-const PORT = 1337 = process.env ;
+const { PORT = 1337 } = process.env;
 const postList = require("./views/postList");
 const postDetails = require("./views/postDetails");
 
